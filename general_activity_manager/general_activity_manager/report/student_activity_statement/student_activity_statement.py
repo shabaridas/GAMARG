@@ -15,6 +15,7 @@ def get_columns():
 		{"label": "Event Name", "fieldname": "event_name", "fieldtype": "Data", "width": 200},
 		{"label": "Category", "fieldname": "category", "fieldtype": "Data", "width": 120},
 		{"label": "Event Date", "fieldname": "event_date", "fieldtype": "Date", "width": 110},
+		{"label": "Status", "fieldname": "status", "fieldtype": "Data", "width": 100},
 		{"label": "Certificate", "fieldname": "certificate", "fieldtype": "Data", "width": 100},
 	]
 
@@ -53,7 +54,8 @@ def get_data(filters):
 	where_clause = " WHERE " + " AND ".join(conditions) if conditions else ""
 
 	query = (
-		"SELECT participant_type, participant, department, event_name, category, event_date, certificate "
+		"SELECT participant_type, participant, department, event_name, category, event_date, "
+		"workflow_state as status, certificate "
 		"FROM `tabActivity Management` "
 		+ where_clause
 		+ " ORDER BY participant, event_date DESC"
