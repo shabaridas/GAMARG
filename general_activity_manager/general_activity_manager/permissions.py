@@ -1,13 +1,7 @@
-"""Permission helpers for General Activity Manager.
-
-Defines query-condition builders and document-level permission checks
-for Student, Faculty, and Activity Management doctypes.
-"""
 import frappe
 
 
 def get_roles(user):
-	"""Return a dict of boolean role flags for the given user."""
 	roles = frappe.get_roles(user)
 	return {
 		"Student": "Student" in roles,
@@ -18,7 +12,6 @@ def get_roles(user):
 
 
 def get_student_query_conditions(user=None):
-	"""Return SQL WHERE conditions to filter Student list view per role."""
 	if not user:
 		user = frappe.session.user
 
@@ -49,7 +42,6 @@ def get_student_query_conditions(user=None):
 
 
 def has_student_permission(doc, ptype=None, user=None):
-	"""Check whether the user has permission to access a specific Student document."""
 	if not user:
 		user = frappe.session.user
 
@@ -71,7 +63,6 @@ def has_student_permission(doc, ptype=None, user=None):
 
 
 def get_faculty_query_conditions(user=None):
-	"""Return SQL WHERE conditions to filter Faculty list view per role."""
 	if not user:
 		user = frappe.session.user
 
@@ -104,7 +95,6 @@ def get_faculty_query_conditions(user=None):
 
 
 def has_faculty_permission(doc, ptype=None, user=None):
-	"""Check whether the user has permission to access a specific Faculty document."""
 	if not user:
 		user = frappe.session.user
 
@@ -124,7 +114,6 @@ def has_faculty_permission(doc, ptype=None, user=None):
 
 
 def get_activity_query_conditions(user=None):
-	"""Return SQL WHERE conditions to filter Activity Management list view per role."""
 	if not user:
 		user = frappe.session.user
 
@@ -164,7 +153,6 @@ def get_activity_query_conditions(user=None):
 
 
 def has_activity_permission(doc, ptype=None, user=None):
-	"""Check whether the user has permission to access a specific Activity Management document."""
 	if not user:
 		user = frappe.session.user
 

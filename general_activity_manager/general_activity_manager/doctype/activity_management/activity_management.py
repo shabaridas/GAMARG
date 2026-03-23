@@ -1,10 +1,5 @@
 # Copyright (c) 2026, gamarg and contributors
 # For license information, please see license.txt
-"""Activity Management DocType controller.
-
-Handles validation logic for activity entries, enforcing date constraints
-and role-based participant access rules.
-"""
 
 import frappe
 from frappe import _
@@ -17,14 +12,12 @@ class ActivityManagement(Document):
 		self.validate_date()
 
 	def validate_date(self):
-		"""Ensure the event date is not set to a future date."""
 		if self.event_date and frappe.utils.getdate(self.event_date) > frappe.utils.getdate(
 			frappe.utils.today()
 		):
 			frappe.throw(_("Event Date cannot be in the future."))
 
 	def validate_participant_user(self):
-		"""Enforce that users can only create/edit activities they are authorised for."""
 		# If user is System Manager, they can do anything
 		roles = frappe.get_roles(frappe.session.user)
 		if "System Manager" in roles:
