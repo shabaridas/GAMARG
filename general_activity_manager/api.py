@@ -167,6 +167,10 @@ def get_activity_report(activity_name):
 		except Exception:
 			uni_reg_no = doc.participant
 
+	category = getattr(doc, "category", None)
+	if category:
+		category = category.replace("_", " ").title()
+
 	return {
 		"name": doc.name,
 		"event_name": doc.event_name,
@@ -176,7 +180,7 @@ def get_activity_report(activity_name):
 		"university_reg_no": uni_reg_no,
 		"participant_type": getattr(doc, "participant_type", None),
 		"department": doc.department,
-		"category": getattr(doc, "category", None),
+		"category": category,
 		"status": getattr(doc, "workflow_state", None) or "—",
 		"description": getattr(doc, "description", None),
 		"certificate": getattr(doc, "certificate", None),
