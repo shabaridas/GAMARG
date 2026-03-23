@@ -1,7 +1,14 @@
+"""Student Activity Statement report.
+
+Generates a filterable list of activity management records, scoped per
+the current user's role (System Manager / Dept.Head → all, Faculty →
+department only, Student → own records only).
+"""
 import frappe
 
 
 def execute(filters=None):
+	"""Entry point called by Frappe's report engine; returns columns and data."""
 	columns = get_columns()
 	data = get_data(filters)
 	return columns, data
