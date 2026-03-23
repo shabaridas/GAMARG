@@ -5,10 +5,11 @@ frappe.query_reports["Student Activity Statement"] = {
 			label: __("Participant Type"),
 			fieldtype: "Select",
 			options: "\nStudent\nFaculty",
+			default: "Student",
 		},
 		{
 			fieldname: "participant",
-			label: __("Participant"),
+			label: __("Participant (Name/ID)"),
 			fieldtype: "Data",
 		},
 		{
@@ -26,13 +27,15 @@ frappe.query_reports["Student Activity Statement"] = {
 		},
 		{
 			fieldname: "from_date",
-			label: __("From Date"),
+			label: __("Activity From"),
 			fieldtype: "Date",
+			default: frappe.datetime.year_start(),
 		},
 		{
 			fieldname: "to_date",
-			label: __("To Date"),
+			label: __("Activity To"),
 			fieldtype: "Date",
+			default: frappe.datetime.nowdate(),
 		},
 	],
 };
